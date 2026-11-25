@@ -1,0 +1,19 @@
+---
+interface Props {
+  theme: string;
+  face: 'front' | 'back';
+}
+
+const { theme, face } = Astro.props;
+const isBack = face === 'back';
+---
+
+<div class:list={['mat-photo-layer', `mat-photo--${theme}`, { 'is-back': isBack }]} aria-hidden="true">
+  <img
+    class="mat-photo-img"
+    src={`/artifacts/${theme}.webp?v=4`}
+    alt=""
+    loading="lazy"
+    decoding="async"
+  />
+</div>

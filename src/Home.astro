@@ -16,6 +16,13 @@ const pdfVi = '/COTL-VIET.pdf?v=2026-11-17';
 const pdfEn = '/COTL-ENG.pdf?v=2026-11-25';
 const pilotPostUrl = 'https://web.facebook.com/colorsoftheland/posts/pfbid0hCK2wZ3Qa1h9sbSDpHyS9V2Z8nXz1dPsHVjAKtLRG85NuoBXi4RK4dGxckhspitel';
 const facebookPageUrl = 'https://web.facebook.com/colorsoftheland';
+const landPostUrls: Record<string, string> = {
+  'an-giang': facebookPageUrl,
+  'long-khanh': facebookPageUrl,
+  'xi-thoai': facebookPageUrl,
+  'co-tu': facebookPageUrl,
+  'lang-teng': facebookPageUrl,
+};
 const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/edit';
 
 const team = [
@@ -281,8 +288,10 @@ const fieldCaptionEn = 'Independent fieldwork archive · Vietnam 2026';
             postHref={pilotPostUrl}
             postLabelVi="Xem bài viết trên Facebook ↗"
             postLabelEn="Read post on Facebook ↗"
-            pdfHrefVi={pdfVi}
-            pdfHrefEn={pdfEn}
+            pdfHrefVi={pilotPostUrl}
+            pdfHrefEn={pilotPostUrl}
+            backLinkLabelVi="Đọc bài viết chi tiết trên Facebook ↗"
+            backLinkLabelEn="Read full story on Facebook ↗"
           />
         </div>
       </section>
@@ -373,8 +382,10 @@ const fieldCaptionEn = 'Independent fieldwork archive · Vietnam 2026';
                 item2LabelEn={enCopy.lands[index].interventionLabel}
                 item2TextVi={viCopy.lands[index].intervention}
                 item2TextEn={enCopy.lands[index].intervention}
-                pdfHrefVi={pdfVi}
-                pdfHrefEn={pdfEn}
+                pdfHrefVi={landPostUrls[site.id] || facebookPageUrl}
+                pdfHrefEn={landPostUrls[site.id] || facebookPageUrl}
+                backLinkLabelVi="Đọc sâu hơn trên Facebook COTL ↗"
+                backLinkLabelEn="Read deeper on COTL Facebook ↗"
               />
             </div>
           </article>
