@@ -343,10 +343,11 @@ if (crewDeck) {
 // 12. Dynamic Ambient Paper Tint Shift on Scroll
 const landChapters = document.querySelectorAll<HTMLElement>('[data-land-theme]');
 const landAuras: Record<string, string> = {
-  'lung-tam': '#f3f6f9',
-  'co-tu': '#faf3ee',
-  'xi-thoai': '#f9f6ed',
   'an-giang': '#f8f3f7',
+  'long-khanh': '#f1f5fa',
+  'xi-thoai': '#f9f6ed',
+  'co-tu': '#faf3ee',
+  'lang-teng': '#faf3f2',
 };
 
 landChapters.forEach((chapter) => {

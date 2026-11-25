@@ -38,6 +38,14 @@ export function mountLanguageToggle() {
       }
     });
 
+    // Swap language-specific href attributes (e.g., VI / EN Proposal PDFs)
+    document.querySelectorAll<HTMLAnchorElement>('[data-vi-href][data-en-href]').forEach((anchor) => {
+      const href = anchor.getAttribute(`data-${targetLang}-href`);
+      if (href !== null) {
+        anchor.href = href;
+      }
+    });
+
     // Swap lightbox dataset attributes on gallery cards
     document.querySelectorAll<HTMLElement>('.gallery-card').forEach((card) => {
       const title = card.getAttribute(`data-lightbox-title-${targetLang}`);

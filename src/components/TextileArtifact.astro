@@ -24,7 +24,11 @@ interface Props {
   item2TextVi: string;
   item2TextEn: string;
   swatches?: Swatch[];
-  pdfHref?: string;
+  pdfHrefVi?: string;
+  pdfHrefEn?: string;
+  postHref?: string;
+  postLabelVi?: string;
+  postLabelEn?: string;
 }
 
 const {
@@ -44,7 +48,11 @@ const {
   item2TextVi,
   item2TextEn,
   swatches = [],
-  pdfHref,
+  pdfHrefVi,
+  pdfHrefEn,
+  postHref,
+  postLabelVi = 'Đọc bài viết trên Facebook ↗',
+  postLabelEn = 'Read story on Facebook ↗',
 } = Astro.props;
 
 const vi = lang === 'vi';
@@ -54,10 +62,11 @@ const flipToFrontVi = '↺ Quay lại mặt trước';
 const flipToFrontEn = '↺ Back to front';
 
 const brocadeColors: Record<string, { primary: string; secondary: string }> = {
-  'lung-tam': { primary: '#1a334d', secondary: '#dca134' },
-  'co-tu': { primary: '#91583c', secondary: '#242b32' },
-  'xi-thoai': { primary: '#662225', secondary: '#c28847' },
   'an-giang': { primary: '#7a4e69', secondary: '#e4bd68' },
+  'long-khanh': { primary: '#1d4273', secondary: '#d4a24c' },
+  'xi-thoai': { primary: '#662225', secondary: '#c28847' },
+  'co-tu': { primary: '#91583c', secondary: '#242b32' },
+  'lang-teng': { primary: '#8b2626', secondary: '#d9a441' },
 };
 const bc = brocadeColors[theme] || { primary: '#91583c', secondary: '#e4bd68' };
 
@@ -163,7 +172,19 @@ const fringeThreads = Array.from({ length: 27 }, (_, i) => ({
           </div>
         )}
 
-        <div class="artifact-footer">
+        <div class:list={['artifact-footer', { 'has-post-link': Boolean(postHref) }]}>
+          {postHref && (
+            <a
+              class="artifact-pdf-link"
+              href={postHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-vi={postLabelVi}
+              data-en={postLabelEn}
+            >
+              {vi ? postLabelVi : postLabelEn}
+            </a>
+          )}
           <button type="button" class="artifact-sewn-tag" data-artifact-flip aria-label={vi ? flipToBackVi : flipToBackEn}>
             <span class="sewn-cross" aria-hidden="true">✕</span>
             <span data-vi={flipToBackVi} data-en={flipToBackEn}>{vi ? flipToBackVi : flipToBackEn}</span>
@@ -221,11 +242,13 @@ const fringeThreads = Array.from({ length: 27 }, (_, i) => ({
           </div>
         </div>
 
-        {pdfHref && (
+        {(pdfHrefVi || pdfHrefEn) && (
           <div class="artifact-footer">
             <a
               class="artifact-pdf-link"
-              href={pdfHref}
+              href={vi ? (pdfHrefVi || pdfHrefEn) : (pdfHrefEn || pdfHrefVi)}
+              data-vi-href={pdfHrefVi || pdfHrefEn}
+              data-en-href={pdfHrefEn || pdfHrefVi}
               target="_blank"
               rel="noopener noreferrer"
               data-vi="Đọc sâu hơn trong Hồ sơ dự án (PDF) ↗"

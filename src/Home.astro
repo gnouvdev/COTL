@@ -12,31 +12,38 @@ const viCopy = copy.vi;
 const enCopy = copy.en;
 const vi = lang === 'vi';
 const sections = ['about', 'lands', 'journey', 'gallery', 'team'];
+const pdfVi = '/COTL-VIET.pdf?v=2026-11-17';
+const pdfEn = '/COTL-ENG.pdf?v=2026-11-17';
+const pilotPostUrl = 'https://web.facebook.com/colorsoftheland/posts/pfbid0hCK2wZ3Qa1h9sbSDpHyS9V2Z8nXz1dPsHVjAKtLRG85NuoBXi4RK4dGxckhspitel';
+const facebookPageUrl = 'https://web.facebook.com/colorsoftheland';
+const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/edit';
+
 const team = [
-  { name: 'Thục Đoan', image: 'doan', domainVi: 'truy xuất & di sản', domainEn: 'traceability & heritage', dye: '#1f3a56', dyeSoft: '#eaf0f6', pigmentVi: 'Sắc chàm Lùng Tám', pigmentEn: 'Lung Tam Indigo' },
+  { name: 'Thục Đoan', image: 'doan', domainVi: 'truy xuất & di sản', domainEn: 'traceability & heritage', dye: '#1f3a56', dyeSoft: '#eaf0f6', pigmentVi: 'Sắc thổ cẩm làng Teng', pigmentEn: 'Lang Teng Brocade' },
   { name: 'Đình Lợi', image: 'loi', domainVi: 'tài chính & chuỗi giá trị', domainEn: 'finance & value chain', dye: '#91583c', dyeSoft: '#f6ece5', pigmentVi: 'Sắc đất đỏ đại ngàn', pigmentEn: 'Annamite Terracotta' },
   { name: 'Nhật Thành', image: 'thanh', domainVi: 'bút ký & kể chuyện', domainEn: 'editorial storytelling', dye: '#b67b36', dyeSoft: '#f9f1e2', pigmentVi: 'Sắc nghệ Xí Thoại', pigmentEn: 'Xi Thoai Turmeric' },
-  { name: 'Quốc Vương', image: 'vuong', domainVi: 'hệ thống & dữ liệu', domainEn: 'systems & data', dye: '#3c6252', dyeSoft: '#ebf2ee', pigmentVi: 'Sắc lá lanh cao nguyên', pigmentEn: 'Highland Flax Green' },
+  { name: 'Quốc Vương', image: 'vuong', domainVi: 'hệ thống & dữ liệu', domainEn: 'systems & data', dye: '#3c6252', dyeSoft: '#ebf2ee', pigmentVi: 'Sắc chỉ dệt Long Khánh', pigmentEn: 'Long Khanh Loom Thread' },
   { name: 'Thục Anh', image: 'anh', domainVi: 'thu mua & thị trường', domainEn: 'supply & markets', dye: '#6b455e', dyeSoft: '#f3ebf0', pigmentVi: 'Sắc Mặc Nưa Tân Châu', pigmentEn: 'Tan Chau Mac Nua' },
 ];
+
 const heroZones = [
   {
-    id: 'lung-tam',
-    nameVi: 'Hà Giang',
-    nameEn: 'Ha Giang',
-    coords: '23°08\'N · 980m',
-    tint: 'rgba(26, 51, 77, 0.34)',
-    quoteVi: '“Bốn mươi công đoạn lanh nương và chàm men tro trên cao nguyên đá.”',
-    quoteEn: '“Forty meticulous stages of upland flax and ash-fermented indigo.”',
+    id: 'an-giang',
+    nameVi: 'An Giang',
+    nameEn: 'An Giang',
+    coords: '10°47\'N · 12m',
+    tint: 'rgba(122, 78, 105, 0.34)',
+    quoteVi: '“Từng sợi chỉ tơ qua bàn tay nghệ nhân Chăm hòa quyện kỹ thuật thủ công với di sản Nam Bộ.”',
+    quoteEn: '“Silk threads guided by Cham artisans intertwine handloom mastery with Southern heritage.”',
   },
   {
-    id: 'co-tu',
-    nameVi: 'Quảng Nam',
-    nameEn: 'Quang Nam',
-    coords: '15°52\'N · 620m',
-    tint: 'rgba(145, 88, 60, 0.32)',
-    quoteVi: '“Từng hạt cườm chì đan trực tiếp vào sợi dọc trên khung dệt lưng đại ngàn.”',
-    quoteEn: '“Lead beads woven directly into warp threads on Annamite backstrap looms.”',
+    id: 'long-khanh',
+    nameVi: 'Đồng Tháp',
+    nameEn: 'Dong Thap',
+    coords: '10°48\'N · 6m',
+    tint: 'rgba(29, 66, 115, 0.34)',
+    quoteVi: '“Hơn một thế kỷ nhịp thoi vang bên sông nước, dệt nên từng ô kẻ sọc khăn rằn Long Khánh.”',
+    quoteEn: '“Over a century of river-delta shuttle rhythms weaving checkered khăn rằn scarves.”',
   },
   {
     id: 'xi-thoai',
@@ -48,21 +55,33 @@ const heroZones = [
     quoteEn: '“Twelve ancient sacred motifs revived from the memory of Ba Na matriarchs.”',
   },
   {
-    id: 'an-giang',
-    nameVi: 'An Giang',
-    nameEn: 'An Giang',
-    coords: '10°47\'N · 12m',
-    tint: 'rgba(122, 78, 105, 0.34)',
-    quoteVi: '“Trăm bận nhúng mủ Mặc Nưa cho thớ lụa tơ tằm đen bóng như nhung.”',
-    quoteEn: '“A hundred dips in Mac Nua fruit yielding legendary lacquer silk.”',
+    id: 'co-tu',
+    nameVi: 'Quảng Nam',
+    nameEn: 'Quang Nam',
+    coords: '15°52\'N · 620m',
+    tint: 'rgba(145, 88, 60, 0.32)',
+    quoteVi: '“Từng hạt cườm chì đan trực tiếp vào sợi dọc trên khung dệt lưng đại ngàn.”',
+    quoteEn: '“Lead beads woven directly into warp threads on Annamite backstrap looms.”',
+  },
+  {
+    id: 'lang-teng',
+    nameVi: 'Quảng Ngãi',
+    nameEn: 'Quang Ngai',
+    coords: '14°46\'N · 180m',
+    tint: 'rgba(139, 38, 38, 0.32)',
+    quoteVi: '“Sợi bông tự nhiên nhuộm sắc cây rừng, dệt nên hồn núi Trường Sơn tại Làng Teng.”',
+    quoteEn: '“Hand-ginned cotton dyed with forest plants on traditional Hrê looms at Lang Teng.”',
   },
 ];
+
 const journeyMeta = [
-  { stationVi: 'Ga 01 · Khởi hành', stationEn: 'Stn 01 · Origin', code: 'COTL-01', photo: '/photos/fieldwork/pilot-8.webp', capVi: 'Đèn ông sao vải in hoa lá', capEn: 'Botanical eco-print lantern', href: '#pilot' },
-  { stationVi: 'Ga 02 · Thực địa', stationEn: 'Stn 02 · Fieldwork', code: 'COTL-02', photo: '/photos/fieldwork/weaver-2.webp', capVi: 'Xưởng dệt Chăm Mohamad', capEn: 'Cham Mohamad loom', href: '#lands' },
-  { stationVi: 'Ga 03 · Đối chiếu', stationEn: 'Stn 03 · Synthesis', code: 'COTL-03', photo: '/photos/fieldwork/product-3.webp', capVi: 'Định lượng năng lực bản địa', capEn: 'Indigenous weave audit', href: '#lands' },
-  { stationVi: 'Ga 04 · Thử nghiệm', stationEn: 'Stn 04 · Case Study', code: 'COTL-04', photo: '/photos/fieldwork/pilot-1.webp', capVi: 'Đồng thiết kế giải pháp', capEn: 'Co-design intervention', href: '#contact' },
+  { stationVi: 'Ga 01 · Pilot', stationEn: 'Stn 01 · Pilot', code: 'COTL-01', photo: '/photos/fieldwork/pilot-8.webp', capVi: 'Đèn ông sao vải in hoa lá', capEn: 'Botanical eco-print lantern', href: '#pilot' },
+  { stationVi: 'Ga 02 · Thực địa', stationEn: 'Stn 02 · Fieldwork', code: 'COTL-02', photo: '/photos/fieldwork/weaver-2.webp', capVi: 'Khảo sát chiều sâu 3 cộng đồng', capEn: 'In-depth community fieldwork', href: '#lands' },
+  { stationVi: 'Ga 03 · Phân tích', stationEn: 'Stn 03 · Standards', code: 'COTL-03', photo: '/photos/long-khanh.webp', capVi: 'Đối chiếu tiêu chuẩn ngành may', capEn: 'Apparel standards benchmark', href: '#lands' },
+  { stationVi: 'Ga 04 · Tham vấn', stationEn: 'Stn 04 · Selection', code: 'COTL-04', photo: '/photos/fieldwork/product-3.webp', capVi: 'Tham vấn & chọn Case Study', capEn: 'Stakeholder validation', href: '#lands' },
+  { stationVi: 'Ga 05 · Giải pháp', stationEn: 'Stn 05 · Pilot 2029', code: 'COTL-05', photo: '/photos/lang-teng.webp', capVi: 'Đồng thiết kế giải pháp thực tế', capEn: 'Co-design practical solution', href: '#contact' },
 ];
+
 const hangStyles = [
   { size: 'size-tall', drop: 'drop-short', tilt: '-1.8deg' },
   { size: 'size-wide', drop: 'drop-deep', tilt: '1.5deg' },
@@ -75,7 +94,6 @@ const hangStyles = [
 ];
 const fieldCaptionVi = 'Lưu trữ thực địa độc lập · Việt Nam 2026';
 const fieldCaptionEn = 'Independent fieldwork archive · Vietnam 2026';
-const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/edit';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -101,7 +119,14 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
       ))}
     </nav>
     <div class="masthead-actions">
-      <a class="header-pdf-link" href="/COTL-VIET.pdf" target="_blank" rel="noopener noreferrer">
+      <a
+        class="header-pdf-link"
+        href={vi ? pdfVi : pdfEn}
+        data-vi-href={pdfVi}
+        data-en-href={pdfEn}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
         <span data-vi={viCopy.downloadPdf} data-en={enCopy.downloadPdf}>{t.downloadPdf}</span>
       </a>
@@ -113,7 +138,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
   </div></header>
 
   <main id="main" class="story-page">
-    <!-- Hero Section: Clean Full-HD Video + 4-Zone Interactive Heritage Horizon -->
+    <!-- Hero Section: Clean Full-HD Video + 5-Zone Interactive Heritage Horizon -->
     <section class="cover" aria-labelledby="title">
       <figure class="cover-picture">
         <div class="hero-photo">
@@ -142,7 +167,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
             </div>
           </div>
 
-          <!-- Poetic Field Readout that reveals when hovering the 4 Horizon Regions -->
+          <!-- Poetic Field Readout that reveals when hovering the 5 Horizon Regions -->
           <aside class="hero-horizon-readout" data-horizon-readout aria-live="polite">
             <div class="readout-line">
               <span class="readout-region" data-horizon-region></span>
@@ -152,8 +177,8 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
           </aside>
         </div>
 
-        <!-- 4-Zone Interactive Horizon Strip -->
-        <div class="hero-horizon-bar" role="navigation" aria-label={vi ? 'Bốn miền di sản' : 'Four heritage regions'}>
+        <!-- 5-Zone Interactive Horizon Strip -->
+        <div class="hero-horizon-bar" role="navigation" aria-label={vi ? 'Năm miền di sản' : 'Five heritage regions'}>
           {heroZones.map((zone, zi) => (
             <button
               type="button"
@@ -206,7 +231,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         </svg>
       </div>
 
-      <!-- Chapter 1: The Pilot Seed (Asymmetric Monograph Title, Zero AI Kicker/Pill) -->
+      <!-- Chapter 1: The Pilot Seed -->
       <section id="pilot" class="shell chapter pilot-chapter">
         <div class="chapter-media pilot-media" data-reveal>
           <figure class="pilot-photo">
@@ -253,7 +278,11 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
             item2LabelEn={enCopy.lessons[1][0]}
             item2TextVi={viCopy.lessons[1][1]}
             item2TextEn={enCopy.lessons[1][1]}
-            pdfHref="/COTL-VIET.pdf"
+            postHref={pilotPostUrl}
+            postLabelVi="Xem bài viết trên Facebook ↗"
+            postLabelEn="Read post on Facebook ↗"
+            pdfHrefVi={pdfVi}
+            pdfHrefEn={pdfEn}
           />
         </div>
       </section>
@@ -269,7 +298,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         </svg>
       </div>
 
-      <!-- Chapter 2: Editorial Art-Book Opener + Four Lands -->
+      <!-- Chapter 2: Editorial Art-Book Opener + Five Lands -->
       <section id="lands" class="lands-stream">
         <div class="shell artbook-opener">
           <span class="thread-stop" data-thread-node aria-hidden="true"></span>
@@ -279,7 +308,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
               <em data-vi="qua" data-en="across">{vi ? 'qua' : 'across'}</em>
             </span>
             <span class="ab-line ab-line-indent">
-              <em data-vi="Bốn" data-en="Four">{vi ? 'Bốn' : 'Four'}</em>
+              <em data-vi="Năm" data-en="Five">{vi ? 'Năm' : 'Five'}</em>
               <span data-vi="Vùng Đất" data-en="Lands">{vi ? 'Vùng Đất' : 'Lands'}</span>
             </span>
           </h2>
@@ -299,7 +328,6 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
             <div class="chapter-copy land-copy">
               <span class="thread-stop" data-thread-node aria-hidden="true"></span>
 
-              <!-- Asymmetric Kinfolk / Monograph Chapter Title (Zero AI Kicker) -->
               <header class="monograph-chapter-head">
                 <h3 class="monograph-title">
                   <span data-vi={viCopy.lands[index].name.split('—')[0].trim()} data-en={enCopy.lands[index].name.split('—')[0].trim()}>
@@ -345,7 +373,8 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
                 item2LabelEn={enCopy.lands[index].interventionLabel}
                 item2TextVi={viCopy.lands[index].intervention}
                 item2TextEn={enCopy.lands[index].intervention}
-                pdfHref="/COTL-VIET.pdf"
+                pdfHrefVi={pdfVi}
+                pdfHrefEn={pdfEn}
               />
             </div>
           </article>
@@ -401,7 +430,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         </div>
       </section>
 
-      <!-- Chapter 4: Cursor-Aware Horizontal Trans-Vietnam Railway Journey -->
+      <!-- Chapter 4: Cursor-Aware 5-Stop Trans-Vietnam Railway Journey -->
       <section id="journey" class="journey-railway-section">
         <div class="shell artbook-opener artbook-opener--split">
           <div class="opener-left">
@@ -445,7 +474,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
           </div>
         </div>
 
-        <!-- Free-Scrolling Drag Horizontal Track of Perforated Vintage Train Tickets -->
+        <!-- Cursor-Aware Horizontal Track of 5 Perforated Vintage Train Tickets -->
         <div class="journey-tickets-viewport free-scroll-viewport" data-journey-viewport>
           <div class="journey-tickets-track">
             {t.stages.map(([date, status, title, description], i) => {
@@ -499,7 +528,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         </div>
       </section>
 
-      <!-- Chapter 5: Cursor-Aware Artisan Drying-Line Exhibition (Hover-to-Play Cinema + Wheel/Drag) -->
+      <!-- Chapter 5: Cursor-Aware Artisan Drying-Line Exhibition -->
       <section id="gallery" class="gallery-exhibition-section">
         <div class="shell artbook-opener artbook-opener--split">
           <div class="opener-left">
@@ -536,7 +565,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         <div class="exhibition-line-viewport free-scroll-viewport" data-gallery-viewport>
           <div class="exhibition-hanging-track" data-gallery-track>
             <div class="exhibition-hemp-rope" aria-hidden="true"></div>
-            <!-- Piece 00: 35mm Cinema Reel (Auto-loads & previews smoothly on hover!) -->
+            <!-- Piece 00: 35mm Cinema Reel -->
             <article class="hanging-piece cinema-reel-piece" data-gallery-item data-category="video">
               <div class="clothespin-pair" aria-hidden="true">
                 <span class="wooden-pin"></span>
@@ -574,9 +603,10 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
               </div>
             </article>
 
-            <!-- Pieces 01..08: Asymmetric Hanging Prints on Wooden Clothespins -->
+            <!-- Hanging Prints on Wooden Clothespins -->
             {t.galleryItems.map((item, idx) => {
               const style = hangStyles[idx % hangStyles.length];
+              const numLabel = idx + 1 < 10 ? `0${idx + 1}` : `${idx + 1}`;
               return (
                 <article
                   class:list={['hanging-piece', 'gallery-card', style.size, style.drop]}
@@ -614,7 +644,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
 
                     <div class="hanging-placard">
                       <div class="placard-index-row">
-                        <span class="placard-num">0{idx + 1}</span>
+                        <span class="placard-num">{numLabel}</span>
                         <span class="gallery-card-loc" data-vi={viCopy.galleryItems[idx].location} data-en={enCopy.galleryItems[idx].location}>{item.location}</span>
                       </div>
                       <h3 class="gallery-card-title" data-vi={viCopy.galleryItems[idx].title} data-en={enCopy.galleryItems[idx].title}>{item.title}</h3>
@@ -628,7 +658,7 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         </div>
       </section>
 
-      <!-- Chapter 6: Archival Photobook Colophon Accordion (Handcrafted Dye Accents & Mounted Plates) -->
+      <!-- Chapter 6: Archival Photobook Colophon Accordion -->
       <section id="team" class="shell section team-section">
         <div class="artbook-opener">
           <span class="thread-stop" data-thread-node aria-hidden="true"></span>
@@ -648,7 +678,6 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
               style={`--member-dye: ${person.dye}; --member-dye-soft: ${person.dyeSoft};`}
               tabindex="0"
             >
-              <!-- Woven Brocade Selvedge Ribbon along Active Card Top -->
               <div class="colophon-brocade-edge" aria-hidden="true">
                 <svg viewBox="0 0 400 10" preserveAspectRatio="none">
                   <pattern id={`crew-weave-${i}`} width="20" height="10" patternUnits="userSpaceOnUse">
@@ -660,7 +689,6 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
                 </svg>
               </div>
 
-              <!-- Hand-Bound Archive Spine with Silk Thread Marker -->
               <div class="crew-spine" aria-hidden="true">
                 <span class="spine-index">0{i + 1}</span>
                 <span class="spine-dye-thread">
@@ -669,11 +697,9 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
                 <span class="spine-vertical-name">{person.name}</span>
               </div>
 
-              <!-- Archival Photobook Colophon Spread -->
               <div class="crew-spotlight-body">
                 <span class="colophon-folio" aria-hidden="true">0{i + 1} / 05</span>
 
-                <!-- Sculptural Ghost Numeral & Woven Diamond Etching -->
                 <div class="colophon-art-watermark" aria-hidden="true">
                   <svg class="watermark-loom-svg" viewBox="0 0 120 120" fill="none">
                     <path d="M60 8 L112 60 L60 112 L8 60 Z" stroke="currentColor" stroke-width="1" />
@@ -684,7 +710,6 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
                   <span class="watermark-ghost-num">0{i + 1}</span>
                 </div>
 
-                <!-- Museum Mounted Archival Portrait Plate with Brass Photo Corners & Washi Tape -->
                 <div class="crew-portrait-wrap">
                   <div class="colophon-portrait-plate">
                     <span class="plate-washi-tape" aria-hidden="true"></span>
@@ -706,7 +731,6 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
                   </div>
                   <p class="colophon-bio" data-vi={viCopy.team[i][1]} data-en={enCopy.team[i][1]}>{t.team[i][1]}</p>
 
-                  <!-- Tactile Natural-Dye Pigment Thread Footnote -->
                   <div class="colophon-footer-swatch">
                     <span class="swatch-drop" aria-hidden="true"></span>
                     <div class="swatch-meta">
@@ -725,9 +749,8 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
         </div>
       </section>
 
-      <!-- Epilogue: Mac Nưa Ebony-Silk Atelier Footer (Zero blurry photo, Zero glass boxes!) -->
+      <!-- Epilogue: Mac Nưa Ebony-Silk Atelier Footer -->
       <footer id="contact" class="atelier-footer">
-        <!-- Crisp Hand-Torn Deckle Paper Edge from Warm Paper into Ebony Mac Nưa Silk -->
         <div class="atelier-torn-top" aria-hidden="true">
           <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
             <path
@@ -754,7 +777,6 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
             <p class="atelier-intro" data-vi={viCopy.contactText} data-en={enCopy.contactText}>{t.contactText}</p>
           </div>
 
-          <!-- 3 Hairline-Separated Collaboration Columns (Zero blurred glass cards!) -->
           <div class="atelier-tracks">
             {t.partnerTracks.map((track, ti) => (
               <div class="atelier-track-col">
@@ -765,13 +787,21 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
             ))}
           </div>
 
-          <!-- Direct Editorial Contact Strip -->
           <div class="atelier-links-strip">
             <a class="atelier-email-link" href="mailto:colorsoftheland.cotl@gmail.com">
               colorsoftheland.cotl@gmail.com <span aria-hidden="true">↗</span>
             </a>
             <div class="atelier-secondary-links">
-              <a href="/COTL-VIET.pdf" target="_blank" rel="noopener noreferrer">
+              <a href={facebookPageUrl} target="_blank" rel="noopener noreferrer">
+                <span data-vi="Fanpage Facebook" data-en="Facebook Page">{vi ? 'Fanpage Facebook' : 'Facebook Page'}</span> ↗
+              </a>
+              <a
+                href={vi ? pdfVi : pdfEn}
+                data-vi-href={pdfVi}
+                data-en-href={pdfEn}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span data-vi={viCopy.downloadPdf} data-en={enCopy.downloadPdf}>{t.downloadPdf}</span> ↗
               </a>
               <a href={deck} target="_blank" rel="noopener noreferrer">
@@ -780,14 +810,13 @@ const deck = 'https://www.canva.com/design/DAHWBJXd7rw/bSWg5JSgl1Dq7bpKYPIiAw/ed
             </div>
           </div>
 
-          <!-- Monumental Edge-to-Edge Atelier Wordmark -->
           <div class="atelier-wordmark-wrap" aria-hidden="true">
             <span class="atelier-wordmark">Colors of the Land<span>.</span></span>
           </div>
 
           <div class="atelier-colophon-bar">
             <span data-vi={fieldCaptionVi} data-en={fieldCaptionEn}>{vi ? fieldCaptionVi : fieldCaptionEn}</span>
-            <span>Hà Giang · Quảng Nam · Phú Yên · An Giang</span>
+            <span>An Giang · Đồng Tháp · Phú Yên · Quảng Nam · Quảng Ngãi</span>
           </div>
         </div>
       </footer>

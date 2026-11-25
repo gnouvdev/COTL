@@ -3120,6 +3120,38 @@ figcaption, .research-credit { margin-top: .27rem; font-size: .75rem; color: var
   color: rgba(244, 237, 224, 0.5);
 }
 
+/* 5-Region Horizon, 5-Station Railway & New Craft Village Specimen Themes */
+.hero-horizon-bar {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .95rem;
+}
+
+.railway-stations-row {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .3rem;
+}
+
+.railway-stations-row .station-code {
+  font-size: .62rem;
+  letter-spacing: .04em;
+}
+
+.railway-stations-row .station-date {
+  font-size: .68rem;
+}
+
+.artifact-theme--long-khanh .cloth-body-shape { fill: #edf2f8; }
+.artifact-theme--long-khanh .cloth-brocade-band { stroke: rgba(29, 66, 115, 0.48); }
+
+.artifact-theme--lang-teng .cloth-body-shape { fill: #f7eceb; }
+.artifact-theme--lang-teng .cloth-brocade-band { stroke: rgba(139, 38, 38, 0.48); }
+
+.artifact-footer.has-post-link {
+  justify-content: space-between;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
 /* Responsive Queries */
 @media (max-width: 920px) {
   .shell { width: calc(100% - 3rem); }
