@@ -1,0 +1,241 @@
+---
+interface Swatch {
+  color: string;
+  nameVi: string;
+  nameEn: string;
+  detailVi: string;
+  detailEn: string;
+}
+
+interface Props {
+  variant: 'paper' | 'cloth';
+  theme: string;
+  lang: 'vi' | 'en';
+  frontKickerVi: string;
+  frontKickerEn: string;
+  frontTextVi: string;
+  frontTextEn: string;
+  item1LabelVi: string;
+  item1LabelEn: string;
+  item1TextVi: string;
+  item1TextEn: string;
+  item2LabelVi: string;
+  item2LabelEn: string;
+  item2TextVi: string;
+  item2TextEn: string;
+  swatches?: Swatch[];
+  pdfHref?: string;
+}
+
+const {
+  variant,
+  theme,
+  lang,
+  frontKickerVi,
+  frontKickerEn,
+  frontTextVi,
+  frontTextEn,
+  item1LabelVi,
+  item1LabelEn,
+  item1TextVi,
+  item1TextEn,
+  item2LabelVi,
+  item2LabelEn,
+  item2TextVi,
+  item2TextEn,
+  swatches = [],
+  pdfHref,
+} = Astro.props;
+
+const vi = lang === 'vi';
+const flipToBackVi = variant === 'cloth' ? 'Lật mặt sau mảnh vải ↻' : 'Lật mặt sau tờ giấy ↻';
+const flipToBackEn = variant === 'cloth' ? 'Flip cloth ↻' : 'Flip note ↻';
+const flipToFrontVi = '↺ Quay lại mặt trước';
+const flipToFrontEn = '↺ Back to front';
+
+const brocadeColors: Record<string, { primary: string; secondary: string }> = {
+  'lung-tam': { primary: '#1a334d', secondary: '#dca134' },
+  'co-tu': { primary: '#91583c', secondary: '#242b32' },
+  'xi-thoai': { primary: '#662225', secondary: '#c28847' },
+  'an-giang': { primary: '#7a4e69', secondary: '#e4bd68' },
+};
+const bc = brocadeColors[theme] || { primary: '#91583c', secondary: '#e4bd68' };
+
+const fringeThreads = Array.from({ length: 27 }, (_, i) => ({
+  x: 16 + i * 15,
+  lenTop: 11 + (i % 3) * 2.5,
+  lenBot: 13 + ((i + 1) % 3) * 3,
+  sway: (i % 2 === 0 ? 1 : -1) * (1.5 + (i % 3) * 0.8),
+}));
+---
+
+<div class:list={['artifact-stage', `artifact--${variant}`, `artifact-theme--${theme}`]} data-artifact-card>
+  <div class="artifact-3d-inner" data-artifact-inner>
+    <!-- FRONT FACE: Physical Cloth Swatch OR Deckle-Torn Handmade Paper -->
+    <div class="artifact-face artifact-front">
+      {variant === 'cloth' ? (
+        <svg class="artifact-object-svg" viewBox="0 0 420 310" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <pattern id={`weave-${theme}`} width="6" height="6" patternUnits="userSpaceOnUse">
+              <path d="M0 1.5 H6 M0 4.5 H6" stroke="rgba(115, 78, 48, 0.085)" stroke-width="0.9" />
+              <path d="M1.5 0 V6 M4.5 0 V6" stroke="rgba(43, 72, 98, 0.065)" stroke-width="0.9" />
+            </pattern>
+            <pattern id={`brocade-${theme}`} width="24" height="14" patternUnits="userSpaceOnUse">
+              <path d="M0 7 L6 1 L12 7 L18 1 L24 7 L18 13 L12 7 L6 13 Z" fill="none" stroke={bc.primary} stroke-width="1.15" stroke-opacity="0.65" />
+              <circle cx="6" cy="7" r="1.4" fill={bc.secondary} fill-opacity="0.85" />
+              <circle cx="18" cy="7" r="1.4" fill={bc.secondary} fill-opacity="0.85" />
+            </pattern>
+            <linearGradient id={`fold-${theme}`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.42)" />
+              <stop offset="44%" stop-color="rgba(70,45,25,0.06)" />
+              <stop offset="52%" stop-color="rgba(255,255,255,0.25)" />
+              <stop offset="100%" stop-color="rgba(60,38,20,0.07)" />
+            </linearGradient>
+          </defs>
+          <g class="cloth-fringe-group">
+            {fringeThreads.map((t) => (
+              <>
+                <path class="tassel-strand" d={`M ${t.x} 18 Q ${t.x + t.sway} ${18 - t.lenTop * 0.5} ${t.x + t.sway * 0.6} ${18 - t.lenTop}`} stroke="rgba(160, 132, 100, 0.72)" stroke-width="1.25" stroke-linecap="round" fill="none" />
+                <circle cx={t.x} cy="17.5" r="1.35" fill="rgba(145, 112, 80, 0.65)" />
+                <path class="tassel-strand" d={`M ${t.x} 285 Q ${t.x - t.sway} ${285 + t.lenBot * 0.55} ${t.x + t.sway * 0.4} ${285 + t.lenBot}`} stroke="rgba(160, 132, 100, 0.8)" stroke-width="1.35" stroke-linecap="round" fill="none" />
+                <circle cx={t.x} cy="285.5" r="1.5" fill="rgba(145, 112, 80, 0.72)" />
+              </>
+            ))}
+          </g>
+          <path class="cloth-body-shape" d="M 10,18 Q 105,13 210,19 T 410,17 Q 415,92 408,154 T 411,286 Q 305,291 205,284 T 11,287 Q 6,212 12,150 T 10,18 Z" />
+          <path d="M 10,18 Q 105,13 210,19 T 410,17 Q 415,92 408,154 T 411,286 Q 305,291 205,284 T 11,287 Q 6,212 12,150 T 10,18 Z" fill={`url(#weave-${theme})`} />
+          <path d="M 10,18 Q 105,13 210,19 T 410,17 Q 415,92 408,154 T 411,286 Q 305,291 205,284 T 11,287 Q 6,212 12,150 T 10,18 Z" fill={`url(#fold-${theme})`} />
+          <rect x="14" y="264" width="392" height="14" fill={`url(#brocade-${theme})`} opacity="0.88" />
+          <path d="M 21,25 L 27,31 M 27,25 L 21,31" stroke={bc.primary} stroke-width="1.3" stroke-opacity="0.55" stroke-linecap="round" />
+          <path d="M 393,25 L 399,31 M 399,25 L 393,31" stroke={bc.primary} stroke-width="1.3" stroke-opacity="0.55" stroke-linecap="round" />
+          <path class="artifact-stitch-path" d="M 19,25 Q 110,21 210,26 T 401,24 Q 405,94 399,154 T 402,260 Q 305,263 205,259 T 19,261 Q 14,205 20,148 T 19,25 Z" fill="none" stroke="currentColor" stroke-width="1.15" stroke-dasharray="6 5" />
+        </svg>
+      ) : (
+        <svg class="artifact-object-svg" viewBox="0 0 420 290" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="paper-fold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(255,253,248,0.72)" />
+              <stop offset="100%" stop-color="rgba(180,150,115,0.16)" />
+            </linearGradient>
+            <linearGradient id="dog-ear-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ede2cf" />
+              <stop offset="100%" stop-color="#dfd0b8" />
+            </linearGradient>
+          </defs>
+          <path class="paper-body-shape" d="M 12,10 L 42,13 L 78,8 L 122,14 L 165,9 L 210,13 L 260,8 L 315,14 L 368,9 L 408,13 L 412,55 L 406,105 L 413,155 L 407,210 L 411,275 L 372,280 L 325,274 L 275,281 L 220,275 L 168,280 L 115,274 L 46,279 L 12,246 L 14,162 L 7,108 L 13,56 Z" />
+          <path d="M 12,10 L 42,13 L 78,8 L 122,14 L 165,9 L 210,13 L 260,8 L 315,14 L 368,9 L 408,13 L 412,55 L 406,105 L 413,155 L 407,210 L 411,275 L 372,280 L 325,274 L 275,281 L 220,275 L 168,280 L 115,274 L 46,279 L 12,246 L 14,162 L 7,108 L 13,56 Z" fill="url(#paper-fold-grad)" />
+          <path d="M 12,246 L 47,245 L 46,279 Z" fill="url(#dog-ear-grad)" stroke="rgba(145, 110, 75, 0.28)" stroke-width="0.9" />
+          <path d="M 6,24 L 46,4 L 54,16 L 14,36 Z" fill="rgba(228, 198, 138, 0.42)" stroke="rgba(195, 162, 100, 0.25)" stroke-width="0.8" />
+          <g opacity="0.22" transform="translate(330, 38) rotate(12)">
+            <path d="M 28,48 Q 30,24 28,6" stroke="#627848" stroke-width="1.3" fill="none" />
+            <ellipse cx="28" cy="14" rx="5" ry="11" fill="#a86876" transform="rotate(-18 28 14)" />
+            <ellipse cx="28" cy="14" rx="5" ry="11" fill="#b47885" transform="rotate(28 28 14)" />
+            <ellipse cx="28" cy="14" rx="5" ry="11" fill="#9a5c6a" transform="rotate(72 28 14)" />
+            <circle cx="28" cy="18" r="3.5" fill="#d4a038" />
+          </g>
+          <path class="artifact-stitch-path" d="M 22,22 Q 115,19 210,23 T 398,21 L 400,264 Q 290,268 200,263 T 48,266 L 22,240 Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-dasharray="5 5" />
+        </svg>
+      )}
+
+      <div class="artifact-sheen" aria-hidden="true"></div>
+      <span class="artifact-knot" aria-hidden="true"></span>
+
+      <div class="artifact-content">
+        <p class="artifact-marginalia" data-vi={frontKickerVi} data-en={frontKickerEn}>
+          {vi ? frontKickerVi : frontKickerEn}
+        </p>
+
+        <p class="artifact-story" data-vi={frontTextVi} data-en={frontTextEn}>
+          {vi ? frontTextVi : frontTextEn}
+        </p>
+
+        {swatches.length > 0 && (
+          <div class="artifact-yarns" aria-label={vi ? 'Sợi sắc tố tự nhiên' : 'Natural pigment yarns'}>
+            {swatches.map((sw) => (
+              <div class="yarn-spool" title={vi ? sw.detailVi : sw.detailEn}>
+                <span class="yarn-knot" style={`background-color: ${sw.color}; box-shadow: 0 0 0 2px rgba(255,255,255,0.88), 0 0 0 3.5px ${sw.color}66;`}></span>
+                <div class="yarn-meta">
+                  <strong class="yarn-name" data-vi={sw.nameVi} data-en={sw.nameEn}>{vi ? sw.nameVi : sw.nameEn}</strong>
+                  <span class="yarn-detail" data-vi={sw.detailVi} data-en={sw.detailEn}>{vi ? sw.detailVi : sw.detailEn}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div class="artifact-footer">
+          <button type="button" class="artifact-sewn-tag" data-artifact-flip aria-label={vi ? flipToBackVi : flipToBackEn}>
+            <span class="sewn-cross" aria-hidden="true">✕</span>
+            <span data-vi={flipToBackVi} data-en={flipToBackEn}>{vi ? flipToBackVi : flipToBackEn}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK FACE: Artisanal Reverse Notes (Human Editorial Typography, Zero AI Boxes) -->
+    <div class="artifact-face artifact-back">
+      <svg class="artifact-object-svg" viewBox="0 0 420 310" preserveAspectRatio="none" aria-hidden="true">
+        {variant === 'cloth' && (
+          <g class="cloth-fringe-group">
+            {fringeThreads.map((t) => (
+              <>
+                <path d={`M ${t.x} 18 Q ${t.x + t.sway} ${18 - t.lenTop * 0.5} ${t.x} ${18 - t.lenTop}`} stroke="rgba(160, 132, 100, 0.72)" stroke-width="1.25" fill="none" />
+                <path d={`M ${t.x} 285 Q ${t.x - t.sway} ${285 + t.lenBot * 0.55} ${t.x} ${285 + t.lenBot}`} stroke="rgba(160, 132, 100, 0.8)" stroke-width="1.35" fill="none" />
+              </>
+            ))}
+          </g>
+        )}
+        <path
+          class="cloth-body-shape is-back-surface"
+          d={variant === 'cloth'
+            ? 'M 10,18 Q 105,13 210,19 T 410,17 Q 415,92 408,154 T 411,286 Q 305,291 205,284 T 11,287 Q 6,212 12,150 T 10,18 Z'
+            : 'M 12,10 L 42,13 L 78,8 L 122,14 L 165,9 L 210,13 L 260,8 L 315,14 L 368,9 L 408,13 L 412,55 L 406,105 L 413,155 L 407,210 L 411,275 L 372,280 L 325,274 L 275,281 L 220,275 L 168,280 L 115,274 L 46,279 L 12,246 L 14,162 L 7,108 L 13,56 Z'}
+        />
+        <path class="artifact-stitch-path" d="M 19,25 Q 110,21 210,26 T 401,24 Q 405,94 399,154 T 402,272 Q 305,276 205,271 T 19,274 Q 14,205 20,148 T 19,25 Z" fill="none" stroke="currentColor" stroke-width="1.15" stroke-dasharray="6 5" />
+      </svg>
+      <div class="artifact-sheen" aria-hidden="true"></div>
+
+      <div class="artifact-content artifact-back-content">
+        <div class="artifact-top-row">
+          <span class="back-folio-note" data-vi="Mặt sau · Ghi chép thực địa" data-en="Reverse · Field notes">
+            {vi ? 'Mặt sau · Ghi chép thực địa' : 'Reverse · Field notes'}
+          </span>
+          <button type="button" class="artifact-sewn-tag is-back" data-artifact-flip>
+            <span data-vi={flipToFrontVi} data-en={flipToFrontEn}>{vi ? flipToFrontVi : flipToFrontEn}</span>
+          </button>
+        </div>
+
+        <div class="artifact-back-points">
+          <div class="editorial-note-block">
+            <em class="note-serif-head clay-ink" data-vi={item1LabelVi} data-en={item1LabelEn}>{vi ? item1LabelVi : item1LabelEn}</em>
+            <p class="point-text" data-vi={item1TextVi} data-en={item1TextEn}>{vi ? item1TextVi : item1TextEn}</p>
+          </div>
+          <div class="point-thread-bridge" aria-hidden="true">
+            <span class="bridge-line"></span>
+            <span class="bridge-shuttle">✦</span>
+            <span class="bridge-line"></span>
+          </div>
+          <div class="editorial-note-block">
+            <em class="note-serif-head indigo-ink" data-vi={item2LabelVi} data-en={item2LabelEn}>{vi ? item2LabelVi : item2LabelEn}</em>
+            <p class="point-text" data-vi={item2TextVi} data-en={item2TextEn}>{vi ? item2TextVi : item2TextEn}</p>
+          </div>
+        </div>
+
+        {pdfHref && (
+          <div class="artifact-footer">
+            <a
+              class="artifact-pdf-link"
+              href={pdfHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-vi="Đọc sâu hơn trong Hồ sơ dự án (PDF) ↗"
+              data-en="Read deeper in Project Dossier (PDF) ↗"
+            >
+              {vi ? 'Đọc sâu hơn trong Hồ sơ dự án (PDF) ↗' : 'Read deeper in Project Dossier (PDF) ↗'}
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</div>

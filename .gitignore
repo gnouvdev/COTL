@@ -1,0 +1,36 @@
+# Dependencies & build outputs
+node_modules/
+dist/
+.astro/
+.vercel/
+.netlify/
+.output/
+
+# Environment & logs
+.env
+.env.*
+!.env.example
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Unneeded raw source folders & root duplicate/scratch files (already curated into public/)
+/An Giang - Cơ sở dệt MOHAMAD-Sản phẩm/
+/An Giang - Cơ sở dệt MOHAMAD-Sản phẩm- Thơ dệt/
+/Trung Thu/
+/Ảnh nền/
+/COTL ENG.pdf
+/COTL VIET.pdf
+/b4bcd5dfea0a955fa30074e87c63a681.mp4
+/section_hero.mp4
+/proposal_extracted.txt
