@@ -84,7 +84,7 @@ export const copy = {
         roman: 'III',
         region: 'Phú Yên',
         coords: '13°26\'N · 340m',
-        season: 'Khảo sát chiều sâu · 2026–2027',
+        season: 'Khảo sát chiều sâu · 11/2026–02/2027',
         name: 'Xí Thoại — Phú Yên',
         eyebrow: 'Thung lũng buôn Xí Thoại',
         quote: '12 mô típ hoa văn cổ phục dựng từ ký ức của những người mẹ, người bà Ba Na.',
@@ -106,7 +106,7 @@ export const copy = {
         roman: 'IV',
         region: 'Quảng Nam',
         coords: '15°52\'N · 620m',
-        season: 'Khảo sát chiều sâu · 2026–2027',
+        season: 'Khảo sát chiều sâu · 11/2026–02/2027',
         name: 'Cơ Tu — Quảng Nam',
         eyebrow: 'Mạng lưới liên thôn Đông Giang',
         quote: 'Mỗi hạt cườm chì đan vào sợi dọc là một vì sao kể chuyện đại ngàn Trường Sơn.',
@@ -128,7 +128,7 @@ export const copy = {
         roman: 'V',
         region: 'Quảng Ngãi',
         coords: '14°46\'N · 180m',
-        season: 'Khảo sát chiều sâu · 2026–2027',
+        season: 'Khảo sát chiều sâu · 11/2026–02/2027',
         name: 'Làng Teng — Quảng Ngãi',
         eyebrow: 'Ba Thành, Ba Tơ, Quảng Ngãi',
         quote: 'Từ sợi bông tự nhiên nhuộm sắc cây rừng, người Hrê dệt nên hồn núi rừng Trường Sơn trên khung cửi mộc.',
@@ -154,15 +154,15 @@ export const copy = {
     loupeDetailTitle: 'Chi tiết kỹ thuật dệt Chăm',
     loupeDetailText: 'Từng hoa văn được đếm sợi thủ công trên khung dệt gỗ. Độ chênh lệch tự nhiên của sợi dệt tay chính là "chứng chỉ" độc bản mà máy dệt công nghiệp không thể sao chép.',
 
-    // Journey (5 Stops matching updated Proposal PDF Page 21)
+    // Journey (5 Stops matching updated PLAN timeline)
     journeyTitle: 'Hành trình Dự án',
     journeyIntro: 'Lộ trình 5 chặng từ Pilot Trung Thu, tiền khảo sát An Giang – Đồng Tháp đến nghiên cứu chiều sâu, đối chiếu tiêu chuẩn ngành may mặc và thử nghiệm giải pháp thực tế.',
     stages: [
-      ['09–10/2026', 'Đã thực hiện', 'Pilot & Tiền khảo sát', 'Thử nghiệm hoạt động Mid-Autumn tại địa phương; khảo sát bước đầu tại Mohamad (An Giang) và Làng dệt choàng Long Khánh (Đồng Tháp) để chuẩn hóa khung nghiên cứu 70/30.'],
-      ['11/2026 – 04/2027', 'Đang thực hiện', 'Nghiên cứu thực trạng chiều sâu', 'Triển khai khảo sát định tính và định lượng tại Xí Thoại (Phú Yên), Cơ Tu (Quảng Nam) và Làng Teng (Quảng Ngãi) về nguồn lực, chuỗi cung ứng, sinh kế và nút thắt thực tế.'],
-      ['01–02/2028', 'Dự kiến', 'Phân tích dữ liệu & Đối chiếu tiêu chuẩn', 'Phân tích sâu bộ dữ liệu thu thập được; đánh giá năng lực hiện hữu và nhận thức của nghệ nhân đối với các tiêu chuẩn ngành may mặc trong nước và quốc tế.'],
-      ['03–04/2028', 'Dự kiến', 'Tham vấn chuyên môn & Lựa chọn Case Study', 'Trao đổi với người làm nghề, nhà thiết kế, chuyên gia chuỗi cung ứng và đơn vị thu mua để kiểm chứng vấn đề và chọn ra 1 cộng đồng phù hợp nhất làm Case Study.'],
-      ['2029', 'Dự kiến', 'Thiết kế & Thử nghiệm giải pháp thực tế', 'Cùng nghệ nhân thiết kế và thử nghiệm giải pháp cụ thể sát vướng mắc thực tế về nguyên liệu, dụng cụ, mẫu mã, hồ sơ sản phẩm, truy xuất nguồn gốc hoặc đầu ra.'],
+      ['09–10/2026', 'Đã thực hiện', 'Pilot & Tiền khảo sát', 'Thử nghiệm hoạt động Mid-Autumn tại địa phương; khảo sát bước đầu tại Mohamad (An Giang) và Làng dệt choàng Long Khánh (Đồng Tháp) để chuẩn hóa bộ khung nghiên cứu 70/30.'],
+      ['11/2026 – 02/2027', 'Đang thực hiện', 'Nghiên cứu thực trạng chiều sâu', 'Triển khai khảo sát định tính và định lượng toàn diện tại 3 cộng đồng tiếp theo: Xí Thoại (Phú Yên), Cơ Tu (Quảng Nam) và Làng Teng (Quảng Ngãi) về nguồn lực, quy trình, sinh kế và nút thắt thực tế.'],
+      ['03/2027 – 04/2027', 'Dự kiến', 'Phân tích dữ liệu & Đối chiếu tiêu chuẩn', 'Phân tích sâu các bộ dữ liệu thực tế thu được; đánh giá năng lực hiện hữu và nhận thức của nghệ nhân đối với các tiêu chuẩn ngành may mặc trong nước và quốc tế.'],
+      ['Cuối 2027 – 2028', 'Dự kiến', 'Tham vấn chuyên môn & Lựa chọn Case Study', 'Trao đổi với các bên liên quan (người làm nghề, nhà thiết kế, chuyên gia chuỗi cung ứng và đơn vị thu mua) để kiểm chứng nút thắt, đánh giá tính khả thi và chọn cộng đồng phù hợp nhất cho Case Study 01.'],
+      ['2029', 'Dự kiến', 'Thiết kế & Thử nghiệm giải pháp thực tế', 'Cùng nghệ nhân thiết kế và thử nghiệm một giải pháp cụ thể sát vướng mắc thực tế về nguyên liệu, dụng cụ, mẫu mã, hồ sơ sản phẩm, truy xuất nguồn gốc hoặc đầu ra.'],
     ],
 
     // Gallery
@@ -393,7 +393,7 @@ export const copy = {
         roman: 'III',
         region: 'Phu Yen',
         coords: '13°26\'N · 340m',
-        season: 'In-Depth Research · 2026–2027',
+        season: 'In-Depth Research · 11/2026–02/2027',
         name: 'Xi Thoai — Phu Yen',
         eyebrow: 'Xi Thoai Highland Valley',
         quote: '12 ancient sacred motifs revived from the living memory of Ba Na matriarchs.',
@@ -415,7 +415,7 @@ export const copy = {
         roman: 'IV',
         region: 'Quang Nam',
         coords: '15°52\'N · 620m',
-        season: 'In-Depth Research · 2026–2027',
+        season: 'In-Depth Research · 11/2026–02/2027',
         name: 'Co Tu — Quang Nam',
         eyebrow: 'Dong Giang Inter-village Network',
         quote: 'Every lead bead woven into warp strands reflects the cosmic harmony of the Annamites.',
@@ -437,7 +437,7 @@ export const copy = {
         roman: 'V',
         region: 'Quang Ngai',
         coords: '14°46\'N · 180m',
-        season: 'In-Depth Research · 2026–2027',
+        season: 'In-Depth Research · 11/2026–02/2027',
         name: 'Lang Teng — Quang Ngai',
         eyebrow: 'Ba Thanh, Ba To, Quang Ngai',
         quote: 'From hand-ginned cotton dyed with forest plants, the Hrê people weave the spirit of the Truong Son mountains.',
@@ -463,15 +463,15 @@ export const copy = {
     loupeDetailTitle: 'Cham Weaving Craftsmanship',
     loupeDetailText: 'Each motif is counted thread by thread on a wooden handloom. The subtle organic variations of hand-spun yarn are the authentic fingerprint that industrial mass production cannot replicate.',
 
-    // Journey (5 Stops matching updated Proposal PDF Page 21)
+    // Journey (5 Stops matching updated PLAN timeline)
     journeyTitle: 'Project Journey',
     journeyIntro: 'A five-stage roadmap from the Mid-Autumn Pilot and An Giang – Dong Thap surveys to in-depth fieldwork, apparel standards benchmarking, and practical intervention.',
     stages: [
-      ['09–10/2026', 'Completed', 'Pilot & Initial Field Survey', 'Piloted Mid-Autumn activities locally and conducted initial field surveys at Mohamad (An Giang) and Long Khanh Scarf-Weaving Village (Dong Thap) to standardize our 70/30 framework.'],
-      ['11/2026 – 04/2027', 'In progress', 'In-Depth Field Research', 'Conduct comprehensive qualitative and quantitative surveys at Xi Thoai (Phu Yen), Co Tu (Quang Nam), and Lang Teng (Quang Ngai) on resources, supply chains, livelihoods, and bottlenecks.'],
-      ['01–02/2028', 'Planned', 'Data Analysis & Standards Benchmarking', 'Deep-dive into collected field data; analyze existing artisan capacities and evaluate awareness of domestic and international apparel industry standards.'],
-      ['03–04/2028', 'Planned', 'Stakeholder Consultation & Case Study Selection', 'Engage artisans, designers, supply chain practitioners, and buyers to validate findings and select the most suitable community for our Case Study.'],
-      ['2029', 'Planned', 'Practical Solution Design & Pilot', 'Co-design and pilot a targeted intervention with artisans addressing real bottlenecks in materials, tools, product design, documentation, traceability, or market access.'],
+      ['09–10/2026', 'Completed', 'Pilot & Initial Field Survey', 'Piloted local Mid-Autumn activities and conducted initial field surveys at Mohamad (An Giang) and Long Khanh Scarf-Weaving Village (Dong Thap) to standardize our 70/30 research framework.'],
+      ['11/2026 – 02/2027', 'In progress', 'In-Depth Field Research', 'Conduct comprehensive qualitative and quantitative surveys at the next three communities: Xi Thoai (Phu Yen), Co Tu (Quang Nam), and Lang Teng (Quang Ngai); gather data on resources, workflows, livelihoods, and bottlenecks.'],
+      ['03/2027 – 04/2027', 'Planned', 'Data Analysis & Standards Benchmarking', 'Deep-dive into collected field data; analyze existing artisan capacities and evaluate their awareness of domestic and international apparel industry standards.'],
+      ['Late 2027 – 2028', 'Planned', 'Stakeholder Consultation & Case Study Selection', 'Engage with key stakeholders (artisans, designers, supply chain practitioners, and buyers) to validate identified bottlenecks, assess practical feasibility, and select Case Study 01.'],
+      ['2029', 'Planned', 'Practical Solution Design & Pilot', 'Co-design and pilot a targeted, practical intervention with artisans addressing their specific bottlenecks (e.g., raw materials, tools, product design, product documentation, traceability, or market access).'],
     ],
 
     // Gallery
